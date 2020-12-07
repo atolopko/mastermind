@@ -64,28 +64,25 @@ def play_round(code, admissible_codes):
     return new_admissible_codes
 
         
+if __name__ == "__main__":
+    # code = sys.argv[1]
+    # assert code in all_codes
 
-# code = sys.argv[1]
-# assert code in all_codes
-
-admissible_codes = all_codes
-
-rounds_taken = []
-
-for code in all_codes:
-    # print(f'Trying to break code {code}')
-    round = 0
     admissible_codes = all_codes
-    while len(admissible_codes) > 1:
-        # print(f'ROUND {round}')
-        admissible_codes = play_round(code, admissible_codes)
-        if len(admissible_codes) == 1:
-            print(f'{code} BROKEN in {round} rounds!')
-        round += 1
-    rounds_taken.append(round)
+    rounds_taken = []
 
-print(np.histogram(rounds_taken, bins=10, range=(0, 10)))
-print(f"Max turns required={max(rounds_taken)}")
-             
-#print(f'Rounds exceeded for these codes:\n{'\n'.join(rounds_exceeded)}')
+    for code in all_codes:
+        # print(f'Trying to break code {code}')
+        round = 0
+        admissible_codes = all_codes
+        while len(admissible_codes) > 1:
+            # print(f'ROUND {round}')
+            admissible_codes = play_round(code, admissible_codes)
+            if len(admissible_codes) == 1:
+                print(f'{code} BROKEN in {round} rounds!')
+            round += 1
+        rounds_taken.append(round)
+
+    print(np.histogram(rounds_taken, bins=10, range=(0, 10)))
+    print(f"Max turns required={max(rounds_taken)}")
 
