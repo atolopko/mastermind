@@ -1,13 +1,12 @@
 from random import randrange
 import sys
 import numpy as np
-import pdb
 
 # code repr is 4-char string, with each color as digit 0-5
 COLORS = 6
-CODE_LEN = 6
+CODE_LEN = 4
 MAX_CODES = COLORS ** CODE_LEN
-ALL_CODES = [np.base_repr(code, 6).rjust(CODE_LEN, '0') for code in range(0, MAX_CODES)]
+ALL_CODES = [list(np.base_repr(code, 6).rjust(CODE_LEN, '0')) for code in range(0, MAX_CODES)]
 
 
 def next_code_query(admissible_codes):
@@ -21,13 +20,12 @@ def next_code_query(admissible_codes):
 def query_response(query, code) -> (int, int):
     correct = 0
     included = 0
-    code = list(code)
-    query = list(query)
 
     for c, q in zip(query, code):
         if c == q:
             correct += 1
 
+    code = list(code)
     for q in query:
         if q in code:
             code.remove(q)
