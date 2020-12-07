@@ -72,15 +72,15 @@ if __name__ == "__main__":
         # print(f'Trying to break code {code}')
         round = 1
         admissible_codes = ALL_CODES
+
         while len(admissible_codes) > 1:
             # print(f'ROUND {round}')
             admissible_codes = play_round(code, admissible_codes)
             round += 1
 
-        assert len(admissible_codes) == 1
-
         # print(f'CODE: {code}')
         # print(f'QUERY: {admissible_codes[0]}')
+        assert len(admissible_codes) == 1
         assert admissible_codes[0] == code
         print(f'{code} BROKEN in {round} rounds!')
             
