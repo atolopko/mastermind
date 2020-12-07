@@ -82,10 +82,11 @@ if __name__ == "__main__":
         # print(f'QUERY: {admissible_codes[0]}')
         assert len(admissible_codes) == 1
         assert admissible_codes[0] == code
-        print(f'{code} BROKEN in {round} rounds!')
-            
+        # print(f'{code} BROKEN in {round} rounds!')
+        
         rounds_taken.append(round)
 
     print(np.histogram(rounds_taken, bins=10, range=(0, 10)))
+    print(f"Min turns required={min(rounds_taken)}")
     print(f"Max turns required={max(rounds_taken)}")
 
