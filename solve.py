@@ -5,7 +5,7 @@ import pdb
 
 # code repr is 4-char string, with each color as digit 0-5
 COLORS = 6
-CODE_LEN = 4
+CODE_LEN = 6
 MAX_CODES = COLORS ** CODE_LEN
 ALL_CODES = [np.base_repr(code, 6).rjust(CODE_LEN, '0') for code in range(0, MAX_CODES)]
 
@@ -28,8 +28,6 @@ def query_response(query, code) -> (int, int):
         if c == q:
             correct += 1
 
-    code.sort()
-    query.sort()
     for q in query:
         if q in code:
             code.remove(q)
