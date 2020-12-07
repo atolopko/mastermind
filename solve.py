@@ -9,7 +9,7 @@ MAX_CODES = COLORS ** CODE_LEN
 ALL_CODES = [list(np.base_repr(code, 6).rjust(CODE_LEN, '0')) for code in range(0, MAX_CODES)]
 
 
-def next_code_query(admissible_codes):
+def next_code_query(admissible_codes) -> list:
     """ 
     As the code breaker, generate the next code query (guess). Do this
     by simply guessing one of the remaining admissible_codes!
@@ -41,18 +41,18 @@ def is_code_admissible(candidate_code, query, resp_correct, resp_misplaced) -> b
     return correct == resp_correct and misplaced == resp_misplaced
 
 
-def prune(query, resp_correct, resp_misplaced, admissible_codes):
+def prune(query, resp_correct, resp_misplaced, admissible_codes) -> list:
     new_admissible_codes = []
     for candidate_code in admissible_codes:
-        if is_code_admissible(candidate_code, query, resp_correct=resp_correct, resp_misplaced=resp_misplaced):
+        if is_code_admissible(candidate_code, query, resp_correct, resp_misplaced):
             new_admissible_codes.append(candidate_code)
             # print(f'admit {code}')
     return new_admissible_codes
 
 
-def play_round(code, admissible_codes):
+def play_round(code, admissible_codes) -> list:
     query = next_code_query(admissible_codes)
-    num_correct, num_misplaced = query_response(query=query, code=code)
+    num_correct, num_misplaced = query_response(query, code)
     new_admissible_codes = prune(query, num_correct, num_misplaced, admissible_codes)
     # print(f'code={code}, query={query}, correct={num_correct}, misplaced={num_misplaced}, admissible_codes={len(new_admissible_codes)}')
 
