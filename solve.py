@@ -58,12 +58,12 @@ def play_round(code, admissible_codes):
     query = next_code_query(admissible_codes)
     num_correct, num_misplaced = query_response(query=query, code=code)
     new_admissible_codes = prune(query, num_correct, num_misplaced, admissible_codes)
-    print(f'code={code}, query={query}, correct={num_correct}, misplaced={num_misplaced}, admissible_codes={len(new_admissible_codes)}')
+    # print(f'code={code}, query={query}, correct={num_correct}, misplaced={num_misplaced}, admissible_codes={len(new_admissible_codes)}')
 
     # Ensure progress is made
     assert len(new_admissible_codes) < len(admissible_codes)
 
-    print(new_admissible_codes)
+    # print(new_admissible_codes)
     return new_admissible_codes
 
         
@@ -72,19 +72,19 @@ if __name__ == "__main__":
     rounds_taken = []
 
     for code in ALL_CODES:
-        print('=' * 80)
-        print(f'Trying to break code {code}')
+        # print('=' * 80)
+        # print(f'Trying to break code {code}')
         round = 1
         admissible_codes = ALL_CODES
         while len(admissible_codes) > 1:
-            print(f'ROUND {round}')
+            # print(f'ROUND {round}')
             admissible_codes = play_round(code, admissible_codes)
             round += 1
 
         assert len(admissible_codes) == 1
 
-        print(f'CODE: {code}')
-        print(f'QUERY: {admissible_codes[0]}')
+        # print(f'CODE: {code}')
+        # print(f'QUERY: {admissible_codes[0]}')
         assert admissible_codes[0] == code
         print(f'{code} BROKEN in {round} rounds!')
             
